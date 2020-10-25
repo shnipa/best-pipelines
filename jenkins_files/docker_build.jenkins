@@ -12,7 +12,6 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
     timestamps()
   }
-  triggers { pollSCM('* * * * *') }
   stages{
     stage('Push image') {
       steps{
