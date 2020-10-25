@@ -5,7 +5,7 @@ properties([disableConcurrentBuilds()])
 pipline {
 	environment {
 	registry = '709267451141.dkr.ecr.us-east-1.amazonaws.com/test'
-    registryCredential = 'ecr_user'
+    	registryCredential = 'ecr_user'
 	}
 	agent any
 	trigges { pollSCM('* * * * *') }
@@ -16,13 +16,12 @@ pipline {
 	stages {
 	    stage('create docker image') {
       		steps{
-        		  echo "====================SART BUILDING IMAGE====================="
+        		echo "====================SART BUILDING IMAGE====================="
           		dir ('docker') {
-                  sh 'echo 1'
-                  sh 'docker build .'
-                  sh 'echo 2'
-              }
+                  		sh 'echo 1'
+                  		sh 'docker build .'
+                  		sh 'echo 2'
+             		 }
         	}
     	}
-	}
 }
