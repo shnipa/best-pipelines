@@ -20,7 +20,9 @@ pipline {
       		steps{
         		  echo "====================SART BUILDING IMAGE====================="
           		dir ('docker') {
+                  sh 'echo 1'
                   sh 'docker build .'
+                  sh 'echo 2'
               }
         	}
     	}
