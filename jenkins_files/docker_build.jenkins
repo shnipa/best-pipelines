@@ -19,10 +19,12 @@ pipeline {
     stage('Push image') {
       steps{
         script {
-          docker.withRegistry('https://709267451141.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ecr_user') {
-            def customImage = docker.build("my-image:alpine-${env.BUILD_ID}")
-            sh "echo '1'"
-            customImage.push()
+          dir ('docker') {
+            docker.withRegistry('https://709267451141.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ecr_user') {
+              def customImage = docker.build("my-image:alpine-${env.BUILD_ID}")
+              sh "echo '1'"
+              customImage.push()
+            }
           }
         }
       }
