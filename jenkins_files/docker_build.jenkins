@@ -7,16 +7,14 @@ pipline {
 	registry = '709267451141.dkr.ecr.us-east-1.amazonaws.com/test'
     registryCredential = 'ecr_user'
 	}
-	agent {
-		label 'master'
-	}
+	agent any
 	trigges { pollSCM('* * * * *') }
 	options {
-		buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-		timestamps()
+		  buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+		  timestamps()
 	}
 	stages {
-	    stage('Build image') {
+	    stage('create docker image') {
       		steps{
         		  echo "====================SART BUILDING IMAGE====================="
           		dir ('docker') {
@@ -27,15 +25,4 @@ pipline {
         	}
     	}
 	}
-    	stage('Push image') {
-      		steps{
-        		script {
-          			docker.withRegistry('https://709267451141.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ecr_user') {
-            			def customImage = docker.build("my-image:alpine-${env.BUILD_ID}") 
-            			sh "echo '1'"
-            			customImage.push()
-          			}
-        		}
-      		}
-    	}	
 }
