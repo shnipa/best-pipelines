@@ -4,8 +4,8 @@ properties([disableConcurrentBuilds()])
 
 pipline {
 	environment {
-	registry = '709267451141.dkr.ecr.us-east-1.amazonaws.com/test'
-    	registryCredential = 'ecr_user'
+		registry = '709267451141.dkr.ecr.us-east-1.amazonaws.com/test'
+    		registryCredential = 'ecr_user'
 	}
 	agent any
 	trigges { pollSCM('* * * * *') }
