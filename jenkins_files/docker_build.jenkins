@@ -13,27 +13,27 @@ pipeline {
   }
   triggers { pollSCM('* * * * *') }
   stages{
+    stage('Push image') {
+      steps{
+        script {
+          dir ('docker') {
+            echo "========== start building image  ======="
+            docker.withRegistry('https://709267451141.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ecr_user') {
+              def customImage = docker.build("my-image:centos-${env.BUILD_ID}")
+              echo "================ done ================\n========= start pushing image ========"
+              customImage.push()
+              echo "================ done ================"
+            }
+          }
+        }
+      }
+    }    
     stage('Build image') {
       steps{
         script {
           sh "docker images"
         }
       }
-    }
-    stage('Push image') {
-      steps{
-        script {
-          dir ('docker') {
-            echo '============== start building image =================='
-            docker.withRegistry('https://709267451141.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ecr_user') {
-              def customImage = docker.build("my-image:centos-${env.BUILD_ID}")
-              echo "============== done ==================\n============= start pushing image ============"
-              customImage.push()
-              echo '============== done =================='
-            }
-          }
-        }
-      }
-    }    
+    }  
   }
 }
