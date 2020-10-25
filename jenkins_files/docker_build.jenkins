@@ -13,7 +13,7 @@ pipeline {
     timestamps()
   }
   stages{
-    stage('Push image') {
+    stage('Build adn Push Image') {
       steps{
         script {
           dir ('docker') {
@@ -28,7 +28,7 @@ pipeline {
         }
       }
     }    
-    stage('Build image') {
+    stage('Show Image') {
       steps{
         script {
           sh "docker images"
