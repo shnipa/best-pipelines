@@ -23,5 +23,6 @@ pipline {
                   		sh 'echo ne mozhet bit'
              		 }
         	}
+	    } 
     	}
 }
