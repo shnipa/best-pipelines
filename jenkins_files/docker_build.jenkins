@@ -18,10 +18,11 @@ pipline {
 	stages {
 	    stage('Build image') {
       		steps{
-        		script {
-          			sh "docker images"
-        		}
-	        }
+        		  echo "====================SART BUILDING IMAGE====================="
+          		dir ('docker') {
+                  sh 'docker build .'
+              }
+        	}
     	}
 	}
     	stage('Push image') {
