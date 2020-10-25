@@ -7,6 +7,10 @@ pipeline {
     registryCredential = 'ecr_user'
   }
   agent any
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    timestamps()
+  }
   triggers { pollSCM('* * * * *') }
   stages{
     stage('Build image') {
