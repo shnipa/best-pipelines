@@ -20,7 +20,7 @@ pipline {
           		dir ('docker') {
                   		sh 'echo 1'
                   		sh 'docker build .'
-                  		sh 'echo 2'
+                  		sh 'echo ne mozhet bit'
              		 }
         	}
     	}
