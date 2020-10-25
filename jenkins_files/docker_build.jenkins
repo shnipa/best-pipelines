@@ -24,10 +24,12 @@ pipeline {
       steps{
         script {
           dir ('docker') {
+            echo "============== start building image =================="
             docker.withRegistry('https://709267451141.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ecr_user') {
               def customImage = docker.build("my-image:alpine-${env.BUILD_ID}")
-              sh "echo '1'"
+              echo '============== done ==================`============= start pushing image ============'
               customImage.push()
+              echo "============== done =================="
             }
           }
         }
