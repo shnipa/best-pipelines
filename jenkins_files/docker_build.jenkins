@@ -3,7 +3,7 @@ properties([disableConcurrentBuilds()])
 
 pipeline {
   environment {
-    developer = 'nikita'
+    developer = 'victor'
     registry = '709267451141.dkr.ecr.us-east-1.amazonaws.com/test'
     registryCredential = 'ecr_user'
   }
