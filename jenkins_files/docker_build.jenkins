@@ -19,7 +19,7 @@ pipeline {
           dir ('docker') {
             echo "========= start building image ========="
               def customImage = docker.build("my-image:centos-by-$env.developer-$env.BUILD_ID")
-              echo "================ done ================
+              echo "================ done ================"
           }
         }
       }
